@@ -31,8 +31,9 @@ output "instance_ip" {
 }
 
 variable "project_id" {
-  description = "regal-center-428511-h1"
+  description = "projrct name"
   type        = string
+  default     = "regal-center-428511-h1"
 }
 
 variable "region" {
