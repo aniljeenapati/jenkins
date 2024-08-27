@@ -70,6 +70,6 @@ variable "image" {
 variable "tags" {
   description = "Network tags for the VM instance"
   type        = list(string)
-  default     = []
+  default     = [terra-jen]
 }
 
