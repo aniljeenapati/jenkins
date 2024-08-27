@@ -2,7 +2,6 @@ provider "google" {
   project     = var.project_id
   region      = var.region
   zone        = var.zone
-  credentials = file(regal-center-428511-h1-a63d9f433474.json)
 }
 
 resource "google_compute_network" "vpc_network" {
