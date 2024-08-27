@@ -11,6 +11,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Replace with your GitHub repository URL
+                GIT_TOKEN =credentials('git-token')
                 git url: 'https://github.com/aniljeenapati/jenkins.git'
             }
         }
