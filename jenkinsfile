@@ -4,6 +4,7 @@ pipeline {
     environment {
         // Replace with your credentials ID if using Jenkins credentials
         GOOGLE_CREDENTIALS = credentials('gcp-key')
+        GIT_TOKEN =credentials('git-token)
     }
 
     stages {
