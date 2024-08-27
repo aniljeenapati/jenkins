@@ -24,8 +24,6 @@ resource "google_compute_instance" "vm_instance" {
     network = google_compute_network.vpc_network.name
     access_config {}
   }
-
-  tags = var.tags
 }
 
 output "instance_ip" {
@@ -65,11 +63,5 @@ variable "image" {
   description = "The boot disk image"
   type        = string
   default     = "debian-cloud/debian-11"
-}
-
-variable "tags" {
-  description = "Network tags for the VM instance"
-  type        = list(string)
-  default     = ['terra-jen']
 }
 
