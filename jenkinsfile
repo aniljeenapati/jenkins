@@ -1,48 +1,30 @@
 pipeline {
     agent any
-
-    environment {
-        // Replace with your credentials ID if using Jenkins credentials
-        GOOGLE_CREDENTIALS = credentials('gcp-key')
-        GIT_TOKEN =credentials('git-token')
-    }
+        environment {
+                GOOGLE_APPLICATION_CREDENTIALS = credentials('gcp-key')
+                GIT_TOKEN = credential('git-token')
+        }
 
     stages {
-        stage('Checkout') {
+        stage('checkout code') {
             steps {
-                // Replace with your GitHub repository URL
-                git url: 'https://github.com/aniljeenapati/jenkins.git'
+                git branch: 'main', url: 'https://github.com/aniljeenapati/jenkins.git'
             }
         }
-
-        stage('Terraform Init') {
+        stage('terraform init') {
             steps {
-                script {
-                    // Save the GCP credentials to a file if using Jenkins credentials
-                    if (env.GOOGLE_CREDENTIALS) {
-                        writeFile file: 'credentials.json', text: GOOGLE_CREDENTIALS
-                    }
-                    
-                    // Initialize Terraform
-                    sh 'terraform init'
-                }
+                sh 'terraform init'
             }
         }
-
-        stage('Terraform Apply') {
+        stage('terraform plan') {
             steps {
-                script {
-                    // Apply the Terraform configuration
-                    sh 'terraform apply -auto-approve -var="credentials_file=./credentials.json"'
-                }
+                sh 'terraform plan'  
             }
         }
-    }
-
-    post {
-        cleanup {
-            // Optionally remove the credentials file after execution
-            sh 'rm -f credentials.json'
+        stage('terraform apply') {
+            steps {
+                sh 'terraform apply  --auto-approve'
+            }
         }
     }
 }
