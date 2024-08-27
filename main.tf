@@ -51,7 +51,7 @@ variable "zone" {
 variable "instance_name" {
   description = "The name of the VM instance"
   type        = string
-  default     = "terraform-vm"
+  default     = "terraform-vm1"
 }
 
 variable "machine_type" {
