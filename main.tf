@@ -33,7 +33,7 @@ output "instance_ip" {
 }
 
 variable "project_id" {
-  description = "The GCP project ID"
+  description = "regal-center-428511-h1"
   type        = string
 }
 
